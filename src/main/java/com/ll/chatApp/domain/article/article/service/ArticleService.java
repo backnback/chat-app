@@ -34,9 +34,11 @@ public class ArticleService {
     }
 
     @Transactional
-    public void modify(Article article, String title, String content) {
+    public Article modify(Article article, String title, String content) {
         article.setTitle(title);
         article.setContent(content);
+
+        return article;
     }
 
     @Transactional
@@ -48,6 +50,7 @@ public class ArticleService {
         return articleRepository.findAll();
     }
 
+    @Transactional
     public void delete(Long id) {
         this.articleRepository.deleteById(id);
     }

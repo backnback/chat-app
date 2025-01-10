@@ -20,12 +20,9 @@ import java.util.stream.IntStream;
 @Profile("!prod")
 public class NotProd {
   @Bean
-  public ApplicationRunner applicationRunner(
-      ChatRoomService chatRoomService,
-      ChatMessageService chatMessageService,
-      MemberService memberService,
-      ArticleService articleService
-  ) {
+  public ApplicationRunner applicationRunner(ChatRoomService chatRoomService,
+      ChatMessageService chatMessageService, MemberService memberService,
+      ArticleService articleService) {
     return new ApplicationRunner() {
       @Transactional
       @Override
@@ -37,9 +34,9 @@ public class NotProd {
         IntStream.rangeClosed(1, 10).forEach(num -> {
           chatMessageService.create(chatRoom1, "홍길동", "채팅메세지" + num);
         });
-        Member member1 = memberService.join("user1", "1234").getData();
-        Member member2 = memberService.join("user2", "1234").getData();
-        Member member3 = memberService.join("user3", "1234").getData();
+        Member member1 = memberService.join("user1", "1234");
+        Member member2 = memberService.join("user2", "1234");
+        Member member3 = memberService.join("user3", "1234");
 
         Article article1 = articleService.write("제목1", "내용1");
         Article article2 = articleService.write("제목2", "내용2");
